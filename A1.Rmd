@@ -124,9 +124,54 @@ ggplot(public) +
   geom_sf() +
   labs(caption = "Map tiles and data by OpenStreetMap")
 
-ggplot() +
-  annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight")  +
-  geom_sf(data = health) +
-  geom_sf(data = public, color = "blue", shape = 15) +
-  labs(caption = "Map tiles and data by OpenStreetMap")
-  
+ ggplot() +
+  geom_sf(data = nhoods, color = "NA", alpha = 0.5,
+          aes(fill = "NYC Neighborhoods")) +
+  geom_sf(data = public, color = "blue") +
+  scale_fill_manual(values = "black", name = "")
+```{r}  
+ ggplot() +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight") +
+  geom_sf(data = health, color = "NA", alpha = 0.5,
+          aes(fill = "NYC Neighborhoods")) +
+  geom_sf(data = public,
+         aes(color = "Privately Owned Public Spaces")) +
+  scale_fill_manual(values = "black", name = "") +
+  scale_color_manual(values = c("blue"), name = "") +
+  labs(caption = "Privately Owned Public Spaces in New York City")
+```
+```{r}  
+ ggplot() +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight") +
+  geom_sf(data = health, color = "NA", alpha = 0.5,
+          aes(fill = "NYC Neighborhoods")) +
+  geom_sf(data = public,
+         aes(color = "Privately Owned Public Spaces")) +
+  scale_fill_manual(values = "black", name = "") +
+  scale_color_manual(values = c("blue"), name = "") +
+  labs(caption = "Privately Owned Public Spaces in New York City")
+```
+
+```{r}  
+ draftmap_plot <- ggplot() +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight") +
+  geom_sf(data = health, color = "NA", alpha = 0.5,
+          aes(fill = "NYC Neighborhoods")) +
+  geom_sf(data = public,
+         aes(color = "Privately Owned Public Spaces")) +
+  scale_fill_manual(values = "black", name = "") +
+  scale_color_manual(values = c("blue"), name = "") +
+  labs(caption = "Privately Owned Public Spaces in New York City")
+```
+```{r}
+view(draftmap_plot)
+```
+```{r}
+pdf("assignment1_draft.pdf", width = 5, height = 3)
+draftmap_plot
+dev.off()
+```
+
+
+
+
