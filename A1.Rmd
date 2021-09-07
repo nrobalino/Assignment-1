@@ -1,6 +1,8 @@
 ---
 title: "Assignment-1"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -66,7 +68,7 @@ nhoods_plot +
 geom_sf() +
 geom_sf(data = public, color = "blue", alpha = 0.5, shape = 1)
 
- ggplot() +
+ggplot() +
   geom_sf(data = nhoods, color = "gray", 
                            size = 1,
                            fill = "black",
@@ -91,13 +93,13 @@ geom_sf(data = nhoods, color = "gray", size = 0.3, fill = "black", alpha = 0.5, 
 geom_sf(data = public, color  = "blue", shape = 15, alpha = 0.9) +
 scale_fill_manual(values = "gray", name = "")
 
- ggplot() +
+ggplot() +
   geom_sf(data = nhoods, color = "gray", alpha = 0.5, size = 0.3
           aes(fill = "NYC Neighborhoods")) +
   geom_sf(data = public, color = "blue") +
   scale_fill_manual(values = "gray", name = "")
   
- ggplot() +
+ggplot() +
   geom_sf(data = nhoods, color = "NA", alpha = 0.5
           aes(fill = "NYC Neighborhoods")) +
   geom_sf(data = public, color = "blue") +
@@ -124,15 +126,17 @@ ggplot(public) +
   geom_sf() +
   labs(caption = "Map tiles and data by OpenStreetMap")
 
- ggplot() +
+ggplot() +
   geom_sf(data = nhoods, color = "NA", alpha = 0.5,
           aes(fill = "NYC Neighborhoods")) +
   geom_sf(data = public, color = "blue") +
   scale_fill_manual(values = "black", name = "")
+
 ```{r}  
- ggplot() +
+ggplot() +
+  ggtitle("NYC Neighborhoods") +
   annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight") +
-  geom_sf(data = health, color = "NA", alpha = 0.5,
+  geom_sf(data = nhoods, color = "white", alpha = 0.5,
           aes(fill = "NYC Neighborhoods")) +
   geom_sf(data = public,
          aes(color = "Privately Owned Public Spaces")) +
@@ -140,6 +144,8 @@ ggplot(public) +
   scale_color_manual(values = c("blue"), name = "") +
   labs(caption = "Privately Owned Public Spaces in New York City")
 ```
+
+
 ```{r}  
  ggplot() +
   annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight") +
@@ -152,26 +158,13 @@ ggplot(public) +
   labs(caption = "Privately Owned Public Spaces in New York City")
 ```
 
-```{r}  
- draftmap_plot <- ggplot() +
-  annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight") +
-  geom_sf(data = health, color = "NA", alpha = 0.5,
-          aes(fill = "NYC Neighborhoods")) +
-  geom_sf(data = public,
-         aes(color = "Privately Owned Public Spaces")) +
-  scale_fill_manual(values = "black", name = "") +
-  scale_color_manual(values = c("blue"), name = "") +
-  labs(caption = "Privately Owned Public Spaces in New York City")
-```
-```{r}
-view(draftmap_plot)
-```
-```{r}
-pdf("assignment1_draft.pdf", width = 5, height = 3)
+draftmap_plot
+
+pdf("A1_draft.pdf", width = 5, height = 3)
 draftmap_plot
 dev.off()
-```
 
-
-
+pdf("A1big_draft.pdf", width = 10, height = 6)
+draftmap_plot
+dev.off()
 
